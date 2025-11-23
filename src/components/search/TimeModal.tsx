@@ -25,13 +25,13 @@ export default function TimeModal({ current, onSave }: Props) {
       const data = await fetchPolicyDay();
       setMinStart(Number(data.minStartDay));
       setMaxStart(Number(data.maxStartDay));
-      setMaxEnd(Number(data.maxEndDay));
+      setMaxEnd(Number(data.maxEndDay) + minStart);
     }
     fetchData()
     const nextDay = new Date(startDate);
     nextDay.setDate(nextDay.getDate() + 1);
     setEndDate(nextDay.toISOString().slice(0, 10));
-  }, [fetchPolicyDay, startDate]);
+  }, [fetchPolicyDay, minStart, startDate]);
 
 
 

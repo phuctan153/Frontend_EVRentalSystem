@@ -204,7 +204,7 @@ export default function AdminContractPage() {
                     {/* Gửi OTP */}
                     <div className="mb-3">
                         <Button variant="secondary" size="lg" onClick={handleSendOtp} disabled={loadingOtp}>
-                            {loadingOtp ? "Đang gửi..." : "📧 Gửi mã OTP"}
+                            {loadingOtp ? "Đang gửi..." : "Gửi mã OTP"}
                         </Button>
                         <div className="mt-2">
                             <span className="text-muted">Không nhận được mã? </span>
@@ -221,7 +221,7 @@ export default function AdminContractPage() {
                         onClick={handleSignContract}
                         disabled={loadingSign || otp.length < 6}
                     >
-                        {loadingSign ? <><Spinner animation="border" size="sm" /> Đang ký...</> : "✍️ Xác nhận ký (Admin)"}
+                        {loadingSign ? <><Spinner animation="border" size="sm" /> Đang ký...</> : "Xác nhận ký (Admin)"}
                     </Button>
                 </div>
             )}
@@ -229,21 +229,21 @@ export default function AdminContractPage() {
             {/* Admin đã ký, chờ renter */}
             {contract.status === "ADMIN_SIGNED" && (
                 <p className="text-info text-center fw-bold mt-3 fs-5">
-                    ℹ️ Admin đã ký hợp đồng. Đang chờ khách hàng ký.
+                    Admin đã ký hợp đồng. Đang chờ khách hàng ký.
                 </p>
             )}
 
             {/* Đã hoàn tất */}
             {contract.status === "FULLY_SIGNED" && (
                 <p className="text-success text-center fw-bold mt-3 fs-5">
-                    ✅ Hợp đồng đã được ký hoàn tất bởi cả hai bên.
+                    Hợp đồng đã được ký hoàn tất bởi cả hai bên.
                 </p>
             )}
 
             {/* Bị hủy */}
             {contract.status === "CANCELLED" && (
                 <p className="text-danger text-center fw-bold mt-3 fs-5">
-                    ❌ Hợp đồng đã bị hủy.
+                    Hợp đồng đã bị hủy.
                 </p>
             )}
         </div>

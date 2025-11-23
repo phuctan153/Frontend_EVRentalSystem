@@ -128,9 +128,6 @@ export default function PaymentResultPage() {
                                         {/* Amount Highlight */}
                                         <div style={styles.amountBox}>
                                             <div style={styles.amountLabel}>Số tiền thanh toán</div>
-                                            <div style={styles.amountValue}>
-                                                {formatCurrency(paymentData.amount)}
-                                            </div>
                                         </div>
 
                                         {/* Payment Details */}

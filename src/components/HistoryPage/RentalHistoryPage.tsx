@@ -436,7 +436,7 @@ export default function RentalHistoryPage() {
               {/* ---- Các nút hành động ---- */}
               <div className="d-flex flex-wrap align-items-center gap-2">
 
-                {/* ✅ Nút Ký/Xem hợp đồng */}
+                {/*nút Ký/Xem hợp đồng*/}
                 {(() => {
                   if (contractStatus === "CANCELLED") return null; // Ẩn nếu hợp đồng bị hủy
 
@@ -505,7 +505,7 @@ export default function RentalHistoryPage() {
                   );
                 })()}
 
-                {/* 💰 Nút Đặt cọc / Đã hoàn tiền */}
+                {/*Nút Đặt cọc / Đã hoàn tiền*/}
                 {(() => {
                   if (b.depositStatus === "PENDING" && b.status !== "CANCELLED") {
                     return (
@@ -648,7 +648,7 @@ export default function RentalHistoryPage() {
                         // Điều hướng sang trang FinalInvoice.tsx
                         navigate(`/final-invoice/booking/${selectedBooking.bookingId}`);
                       } else {
-                        toast.info("📄 Hiện chưa có hóa đơn tổng cho đơn này.", {
+                        toast.info(" Hiện chưa có hóa đơn tổng cho đơn này.", {
                           position: "top-right",
                           autoClose: 3000,
                         });
@@ -765,7 +765,15 @@ export default function RentalHistoryPage() {
             </div>
           ) : cancelInfo ? (
             <>
-              <p className="text-danger fw-bold">⚠️ {cancelInfo.message}</p>
+              {(() => {
+                const booking = bookings.find(b => b.bookingId === bookingToCancel);
+                if (booking?.depositStatus !== "PENDING") {
+                  return (
+                    <p className="text-danger fw-bold">⚠️ {cancelInfo.message}</p>
+                  );
+                }
+                return null;
+              })()}
               <p>Bạn có chắc chắn muốn hủy đơn này không?</p>
             </>
           ) : (
@@ -792,26 +800,26 @@ export default function RentalHistoryPage() {
         </Modal.Footer>
       </Modal>
 
-      {/* 🌟 Modal đánh giá với ngôi sao thật */}
+      {/* Modal đánh giá */}
       <Modal show={showRatingModal} onHide={() => setShowRatingModal(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>Đánh giá đơn thuê #{bookingId}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          {/* ⭐ Đánh giá xe */}
+          {/*Đánh giá xe*/}
           <div className="mb-4 text-center">
             <label className="form-label fw-bold">Đánh giá xe</label>
             <StarRating rating={vehicleRating} onRatingChange={setVehicleRating} />
           </div>
 
-          {/* 👤 Đánh giá nhân viên */}
+          {/*Đánh giá nhân viên */}
           <div className="mb-4 text-center">
             <label className="form-label fw-bold">Đánh giá nhân viên</label>
             <StarRating rating={staffRating} onRatingChange={setStaffRating} />
           </div>
 
-          {/* 📝 Nhận xét thêm */}
+          {/* Nhận xét thêm */}
           <div className="mb-3">
             <label className="form-label fw-bold">Nhận xét thêm</label>
             <textarea
