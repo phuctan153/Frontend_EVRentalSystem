@@ -2,15 +2,12 @@ import React from "react";
 import { 
   Container, 
   Row, 
-  Col, 
-  Navbar, 
-  Nav, 
+  Col,
   Button, 
   Image 
 } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import image1 from "./b107a432-100b-4bdc-91ca-e8afcf78061c.png";
 import image2 from "./c79a26a8-113c-463f-bc32-23c4aa1958bb.png";
 
 const App: React.FC = () => {
