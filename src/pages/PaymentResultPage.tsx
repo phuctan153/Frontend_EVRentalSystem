@@ -33,7 +33,7 @@ export default function PaymentResultPage() {
 
                 // 🟢 Gửi dữ liệu IPN đến backend
                 const res = await axios.post(
-                    "http://localhost:8080/api/payments/momo/ipn",
+                    "https://ev-rental-backend.onrender.com/api/payments/momo/ipn",
                     ipnData,
                     {
                         headers: {

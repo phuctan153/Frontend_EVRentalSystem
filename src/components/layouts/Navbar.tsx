@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
     if (!user) return;
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:8080/api/notifications/my", {
+      const res = await axios.get("https://ev-rental-backend.onrender.com/api/notifications/my", {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.data?.data) setNotifications(res.data.data.slice(0, 10));

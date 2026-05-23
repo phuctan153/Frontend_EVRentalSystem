@@ -28,7 +28,7 @@ const UserProfile: React.FC = () => {
         setLoading(true);
 
         // 🔹 Gọi trực tiếp API renter/profile
-        const res = await axios.get("http://localhost:8080/api/renter/profile", {
+        const res = await axios.get("https://ev-rental-backend.onrender.com/api/renter/profile", {
           headers: {
             Authorization: `Bearer ${userContext.token}`,
           },
@@ -42,7 +42,7 @@ const UserProfile: React.FC = () => {
           if (renterData.walletId) {
             try {
               const walletRes = await axios.get(
-                `http://localhost:8080/api/wallet/${renterData.walletId}`,
+                `https://ev-rental-backend.onrender.com/api/wallet/${renterData.walletId}`,
                 {
                   headers: { Authorization: `Bearer ${userContext.token}` },
                 }
@@ -148,7 +148,7 @@ const UserProfile: React.FC = () => {
       setLoadingTransactions(true);
       const token = userContext?.token;
       const res = await axios.get(
-        `http://localhost:8080/api/wallet/${profileData.walletId}/transactions`,
+        `https://ev-rental-backend.onrender.com/api/wallet/${profileData.walletId}/transactions`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

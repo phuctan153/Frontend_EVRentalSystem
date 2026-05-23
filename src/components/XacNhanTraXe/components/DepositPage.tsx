@@ -80,7 +80,7 @@ export default function DepositPage() {
     const fetchBooking = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/bookings/${bookingId}`,
+          `https://ev-rental-backend.onrender.com/api/bookings/${bookingId}`,
           {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("token"),
@@ -104,7 +104,7 @@ export default function DepositPage() {
     const fetchVehicle = async (vehicleId: number) => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/vehicle/detail/${vehicleId}`
+          `https://ev-rental-backend.onrender.com/api/vehicle/detail/${vehicleId}`
         );
         const data = res.data.data;
         console.log("✅ Vehicle detail:", res.data.data);
@@ -121,7 +121,7 @@ export default function DepositPage() {
     const checkExistingInvoice = async (): Promise<boolean> => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/invoices/bookings/${bookingId}/invoices`,
+          `https://ev-rental-backend.onrender.com/api/invoices/bookings/${bookingId}/invoices`,
           {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("token"),
@@ -201,7 +201,7 @@ export default function DepositPage() {
 
       // Tạo invoice mới
       await axios.post(
-        `http://localhost:8080/api/invoices/bookings/${bookingId}/invoices/deposit`,
+        `https://ev-rental-backend.onrender.com/api/invoices/bookings/${bookingId}/invoices/deposit`,
         null,
         {
           headers: {
@@ -212,7 +212,7 @@ export default function DepositPage() {
 
       // Lấy thông tin invoice vừa tạo
       const res2 = await axios.get(
-        `http://localhost:8080/api/invoices/bookings/${bookingId}/invoices`,
+        `https://ev-rental-backend.onrender.com/api/invoices/bookings/${bookingId}/invoices`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
@@ -261,7 +261,7 @@ export default function DepositPage() {
 
       // Tạo link thanh toán MoMo mới (chỉ tạo payment URL, không tạo invoice)
       const res = await axios.post(
-        `http://localhost:8080/api/payments/invoice/${invoiceId}/momo`,
+        `https://ev-rental-backend.onrender.com/api/payments/invoice/${invoiceId}/momo`,
         {
           amount: depositNumber,
         },
@@ -320,7 +320,7 @@ export default function DepositPage() {
 
       // Tạo link thanh toán PayOS mới (chỉ tạo payment URL, không tạo invoice)
       const res = await axios.post(
-        `http://localhost:8080/api/payments/invoice/${invoiceId}/payos`,
+        `https://ev-rental-backend.onrender.com/api/payments/invoice/${invoiceId}/payos`,
         { amount: depositNumber },
         {
           headers: {

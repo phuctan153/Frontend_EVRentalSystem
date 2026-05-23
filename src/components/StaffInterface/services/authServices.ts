@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:8080';
+const baseURL = 'https://ev-rental-backend.onrender.com';
 
 // Hàm đăng nhập nhân viên và lưu Token
 export const staffLogin = async (email: string, password: string) => {
@@ -18,7 +18,7 @@ export const staffLogin = async (email: string, password: string) => {
 // Hàm đăng xuất nhân viên, xóa Token khỏi localStorage
 export const staffLogout = async () => {
     
-    await axios.post("http://localhost:8080/api/auth/logout/staff", null, {
+    await axios.post("https://ev-rental-backend.onrender.com/api/auth/logout/staff", null, {
         headers: {
             Authorization: `Bearer ` +localStorage.getItem("token")
         }

@@ -60,7 +60,7 @@ export default function RentalHistoryPage() {
         setLoading(true);
 
         // 🔹 Gọi trực tiếp API renter/profile
-        const res = await axios.get("http://localhost:8080/api/renter/profile", {
+        const res = await axios.get("https://ev-rental-backend.onrender.com/api/renter/profile", {
           headers: {
             Authorization: `Bearer ${userContext.token}`,
           },
@@ -87,7 +87,7 @@ export default function RentalHistoryPage() {
       try {
         const token = localStorage.getItem("token");
         setLoading(true);
-        const res = await axios.get("http://localhost:8080/api/renter/bookings", {
+        const res = await axios.get("https://ev-rental-backend.onrender.com/api/renter/bookings", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = res.data.data;
@@ -97,7 +97,7 @@ export default function RentalHistoryPage() {
         for (const bk of data) {
           try {
             const resContract = await axios.get(
-              `http://localhost:8080/api/contracts/${bk.bookingId}`,
+              `https://ev-rental-backend.onrender.com/api/contracts/${bk.bookingId}`,
               { headers: { Authorization: `Bearer ${token}` } }
             );
             statusMap[bk.bookingId] = resContract.data.data?.status;
@@ -112,7 +112,7 @@ export default function RentalHistoryPage() {
           data.map(async (bk: any) => {
             try {
               const resRating = await axios.get(
-                `http://localhost:8080/api/bookings/${bk.bookingId}/rating`,
+                `https://ev-rental-backend.onrender.com/api/bookings/${bk.bookingId}/rating`,
                 { headers: { Authorization: `Bearer ${token}` } }
               );
               if (resRating.data?.data) ratedIds.push(bk.bookingId);
@@ -137,7 +137,7 @@ export default function RentalHistoryPage() {
     try {
       setLoadingDetail(true);
       const token = localStorage.getItem("token");
-      const res = await axios.get(`http://localhost:8080/api/bookings/${bookingId}`, {
+      const res = await axios.get(`https://ev-rental-backend.onrender.com/api/bookings/${bookingId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       let booking = res.data.data;
@@ -171,7 +171,7 @@ export default function RentalHistoryPage() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.put(
-        `http://localhost:8080/api/bookings/${bookingId}/cancel`,
+        `https://ev-rental-backend.onrender.com/api/bookings/${bookingId}/cancel`,
         { reason: "Người thuê tự hủy" },
         {
           headers: {
@@ -224,7 +224,7 @@ export default function RentalHistoryPage() {
       setLoadingCancelInfo(true);
       const token = localStorage.getItem("token");
       const res = await axios.get(
-        `http://localhost:8080/api/bookings/${bookingId}/confirm-cancel`,
+        `https://ev-rental-backend.onrender.com/api/bookings/${bookingId}/confirm-cancel`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -243,7 +243,7 @@ export default function RentalHistoryPage() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.put(
-        `http://localhost:8080/api/bookings/${bookingId}/notify-return`,
+        `https://ev-rental-backend.onrender.com/api/bookings/${bookingId}/notify-return`,
         {},
         {
           headers: {
@@ -281,7 +281,7 @@ export default function RentalHistoryPage() {
       setSubmittingRating(true);
       const token = localStorage.getItem("token");
       await axios.post(
-        `http://localhost:8080/api/bookings/${bookingId}/rating`,
+        `https://ev-rental-backend.onrender.com/api/bookings/${bookingId}/rating`,
         {
           vehicleRating,
           staffRating,
@@ -320,7 +320,7 @@ export default function RentalHistoryPage() {
       const token = localStorage.getItem("token");
 
       const res = await axios.patch(
-        `http://localhost:8080/api/bookings/images/${img.imageId}/confirm`,
+        `https://ev-rental-backend.onrender.com/api/bookings/images/${img.imageId}/confirm`,
         {},
         {
           headers: {
@@ -457,7 +457,7 @@ export default function RentalHistoryPage() {
                           try {
                             const token = localStorage.getItem("token");
                             const res = await axios.get(
-                              `http://localhost:8080/api/contracts/${b.bookingId}`,
+                              `https://ev-rental-backend.onrender.com/api/contracts/${b.bookingId}`,
                               { headers: { Authorization: `Bearer ${token}` } }
                             );
                             navigate(`/contract-preview/${b.bookingId}`, {
@@ -482,7 +482,7 @@ export default function RentalHistoryPage() {
                           try {
                             const token = localStorage.getItem("token");
                             const res = await axios.get(
-                              `http://localhost:8080/api/contracts/${b.bookingId}`,
+                              `https://ev-rental-backend.onrender.com/api/contracts/${b.bookingId}`,
                               { headers: { Authorization: `Bearer ${token}` } }
                             );
                             navigate(`/contract-preview/${b.bookingId}`, {
@@ -629,7 +629,7 @@ export default function RentalHistoryPage() {
                     try {
                       const token = localStorage.getItem("token");
                       const res = await axios.get(
-                        `http://localhost:8080/api/invoices/bookings/${selectedBooking.bookingId}/invoices`,
+                        `https://ev-rental-backend.onrender.com/api/invoices/bookings/${selectedBooking.bookingId}/invoices`,
                         {
                           headers: { Authorization: `Bearer ${token}` },
                         }
